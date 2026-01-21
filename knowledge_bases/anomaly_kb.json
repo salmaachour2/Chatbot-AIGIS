@@ -1,0 +1,122 @@
+[
+  {
+    "anomaly": "Fissure",
+    "types": [
+      "Fissure verticale",
+      "Fissure horizontale",
+      "Fissure en escalier",
+      "Fissure diagonale",
+      "Micro-fissure"
+    ],
+    "causes": [
+      "Tassement différentiel des fondations",
+      "Dilatation/contraction thermique",
+      "Surcharge structurelle",
+      "Retrait du béton ou du mortier",
+      "Vibrations excessives",
+      "Défauts de conception ou de construction"
+    ],
+    "remediation": [
+      "Injection de résine époxy pour les fissures fines",
+      "Pose de chaînages métalliques",
+      "Reprise en sous-œuvre des fondations",
+      "Installation de joints de dilatation",
+      "Renforcement par matériaux composites (CFRP)",
+      "Contrôle des sources de vibrations"
+    ],
+    "eurocodes": ["EN 1990", "EN 1992-1-1", "EN 1996-1-1", "EN 1998-1"],
+    "risques": ["Affaiblissement structurel", "Infiltration d'eau", "Corrosion des armatures"]
+  },
+  {
+    "anomaly": "Corrosion",
+    "types": [
+      "Corrosion des armatures",
+      "Corrosion des éléments métalliques",
+      "Corrosion galvanique"
+    ],
+    "causes": [
+      "Carbonatation du béton",
+      "Pénétration de chlorures",
+      "Enrobage insuffisant des armatures",
+      "Environnement marin ou industriel",
+      "Fissures exposant les armatures"
+    ],
+    "remediation": [
+      "Nettoyage mécanique et application d'inhibiteur",
+      "Remplacement du béton dégradé",
+      "Cathodic protection",
+      "Revêtements protecteurs (époxy, zinc)",
+      "Augmentation de l'enrobage"
+    ],
+    "eurocodes": ["EN 1992-1-1", "EN 1504", "EN ISO 12944"],
+    "risques": ["Réduction de section des armatures", "Éclatement du béton", "Perte de capacité portante"]
+  },
+  {
+    "anomaly": "Délaminage",
+    "types": [
+      "Délaminage de surface",
+      "Cloquage",
+      "Écaillage"
+    ],
+    "causes": [
+      "Corrosion des armatures",
+      "Gel/dégel répétés",
+      "Réaction alcali-granulat",
+      "Surcharge d'impact",
+      "Défaut de compactage"
+    ],
+    "remediation": [
+      "Sablage ou hydrodécapage",
+      "Application de mortier de réparation",
+      "Remplacement localisé du béton",
+      "Protection de surface"
+    ],
+    "eurocodes": ["EN 1992-1-1", "EN 1504-3", "EN 13670"],
+    "risques": ["Chute d'éléments", "Accélération de la corrosion", "Dégradation esthétique"]
+  },
+  {
+    "anomaly": "Infiltration",
+    "types": [
+      "Infiltration par capillarité",
+      "Infiltration par fissures",
+      "Infiltration par joints défectueux"
+    ],
+    "causes": [
+      "Défaut d'étanchéité",
+      "Fissures non traitées",
+      "Drainage insuffisant",
+      "Joints de dilatation défectueux"
+    ],
+    "remediation": [
+      "Injection de résine hydrophobe",
+      "Application de membrane d'étanchéité",
+      "Réparation des joints",
+      "Amélioration du drainage périphérique"
+    ],
+    "eurocodes": ["EN 1992-3", "EN 1504-2", "EN 13967"],
+    "risques": ["Corrosion accélérée", "Dégradation des matériaux", "Problèmes d'humidité interne"]
+  },
+  {
+    "anomaly": "Déformation",
+    "types": [
+      "Flèche excessive",
+      "Bombement",
+      "Affaissement localisé"
+    ],
+    "causes": [
+      "Surcharge permanente",
+      "Fluage du béton",
+      "Défaut de conception",
+      "Sous-dimensionnement",
+      "Charges dynamiques non prévues"
+    ],
+    "remediation": [
+      "Pose d'étais temporaires",
+      "Renforcement par plaques métalliques",
+      "Ajout de supports intermédiaires",
+      "Précontrainte additionnelle"
+    ],
+    "eurocodes": ["EN 1990", "EN 1992-1-1", "EN 1991-1-1"],
+    "risques": ["Perte de stabilité", "Apparition de fissures", "Effondrement local"]
+  }
+]

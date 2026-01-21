@@ -1,0 +1,32 @@
+[
+  {
+    "code": "EN 1990",
+    "title": "Bases de calcul des structures",
+    "domaine": "Principes fondamentaux de la sécurité structurale"
+  },
+  {
+    "code": "EN 1992-1-1",
+    "title": "Calcul des structures en béton",
+    "domaine": "Règles générales et règles pour les bâtiments"
+  },
+  {
+    "code": "EN 1992-3",
+    "title": "Ouvrages de retenue liquide",
+    "domaine": "Exigences d'étanchéité"
+  },
+  {
+    "code": "EN 1996-1-1",
+    "title": "Calcul des ouvrages en maçonnerie",
+    "domaine": "Règles générales pour maçonnerie armée et non armée"
+  },
+  {
+    "code": "EN 1998-1",
+    "title": "Règles générales, actions sismiques et règles pour les bâtiments",
+    "domaine": "Conception parasismique"
+  },
+  {
+    "code": "EN 1504",
+    "title": "Produits et systèmes pour la protection et réparation des structures en béton",
+    "domaine": "Réparation et protection du béton"
+  }
+]

@@ -1,0 +1,20 @@
+# Environnement virtuel Python
+env/
+venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Variables sensibles
+.env
+.env.local
+.env.*
+
+# Bases de données
+*aigis_chat.db
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+db.sqlite
