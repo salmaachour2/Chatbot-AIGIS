@@ -78,12 +78,16 @@ header[data-testid="stHeader"] {
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--gray-200);
+    display: flex;
+     
+    padding-left: 37px;               
 }
 .logo {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 0.5rem;
+            
 }
 .logo-icon {
     width: 44px;
@@ -480,12 +484,18 @@ if "file_uploader_key" not in st.session_state:
     st.session_state.file_uploader_key = str(uuid.uuid4())
 if "text_area_key" not in st.session_state:
     st.session_state.text_area_key = str(uuid.uuid4())
-if "show_delete_popup" not in st.session_state:
-    st.session_state.show_delete_popup = False
+if "delete_popup_opened" not in st.session_state:
+    st.session_state.delete_popup_opened = False
 if "conversation_to_delete" not in st.session_state:
     st.session_state.conversation_to_delete = None
 if "sidebar_visible" not in st.session_state:
     st.session_state.sidebar_visible = True
+if "show_search" not in st.session_state:
+    st.session_state.show_search = False
+
+if "search_query" not in st.session_state:
+    st.session_state.search_query = ""
+
 
 # ----------------------
 # Fonctions utilitaires
@@ -517,12 +527,32 @@ with st.sidebar:
     # Bouton nouvelle conversation
     if st.button("➕ Nouvelle Analyse", key="new_convo", use_container_width=True, type="secondary"):
         create_new_conversation()
+    # Bouton recherche
+    if st.button("🔍 Recherche chats", key="search_toggle", use_container_width=True, type="secondary"):
+        st.session_state.delete_popup_opened = False
+        st.session_state.show_search = not st.session_state.show_search
+        
+
+    
     
     st.markdown("<hr>", unsafe_allow_html=True)
 
+    # Champ de recherche
+    if st.session_state.show_search:
+        st.session_state.search_query = st.text_input(
+            "",
+        placeholder="🔍 Rechercher par titre...",
+        value=st.session_state.search_query,
+        label_visibility="collapsed"
+    )
     # Liste des conversations
     st.markdown('<div class="section-title">📁 Historique</div>', unsafe_allow_html=True)
     conversations = st.session_state.conversations
+    if st.session_state.search_query:
+        conversations = [
+            conv for conv in conversations
+            if st.session_state.search_query.lower() in (conv[1] or "").lower()
+        ]
     if conversations:
         for conv_id, title, created_at in conversations:
             try:
@@ -539,14 +569,16 @@ with st.sidebar:
                 button_type = "secondary"
                 if st.button(title, key=f"conv_{conv_id}", use_container_width=True, type=button_type):
                     st.session_state.current_conversation = conv_id
+                    st.session_state.show_search = False
+                    st.session_state.search_query = ""
                     messages = get_messages(conv_id)
                     st.session_state.messages = [{"role": role, "content": content, "image": image} for role, content, image in messages]
                     st.rerun()
             with col2:
                 if st.button("🗑", key=f"del_{conv_id}", type="tertiary", help="Supprimer"):
-                    st.session_state.show_delete_popup = True
+                    st.session_state.delete_popup_opened = True
                     st.session_state.conversation_to_delete = conv_id
-                    st.rerun()
+
 
             # Métadonnées en ligne
             st.markdown(f'''
@@ -562,7 +594,7 @@ with st.sidebar:
 # ----------------------
 # Popup de suppression
 # ----------------------
-if st.session_state.show_delete_popup:
+if st.session_state.delete_popup_opened:
 
     @st.dialog("⚠️ Confirmer la suppression")
     def confirm_delete():
@@ -581,17 +613,21 @@ if st.session_state.show_delete_popup:
                 if st.session_state.current_conversation == st.session_state.conversation_to_delete:
                     create_new_conversation()
 
-                st.session_state.show_delete_popup = False
+                st.session_state.delete_popup_opened = False
                 st.session_state.conversation_to_delete = None
                 st.rerun()
 
         with col2:
             if st.button("❌ Annuler", use_container_width=True):
-                st.session_state.show_delete_popup = False
+                st.session_state.delete_popup_opened = False
                 st.session_state.conversation_to_delete = None
                 st.rerun()
 
     confirm_delete()
+
+    # 🔐 IMPORTANT : empêcher réouverture automatique
+    st.session_state.delete_popup_opened = False
+
 
 
 
