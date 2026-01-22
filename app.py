@@ -563,31 +563,37 @@ with st.sidebar:
 # Popup de suppression
 # ----------------------
 if st.session_state.show_delete_popup:
-    st.markdown('<div class="popup-overlay">', unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1,2,1])
-    with col2:
-        st.markdown("""
-        <div class="popup-content">
-            <h3 class="popup-title">⚠️ Confirmer la suppression</h3>
-            <p class="popup-message">Êtes-vous sûr de vouloir supprimer cette conversation ? Cette action est irréversible.</p>
-        </div>
-        """, unsafe_allow_html=True)
-        confirm_col, cancel_col = st.columns(2)
-        with confirm_col:
-            if st.button("✅ Supprimer", key="confirm_delete", use_container_width=True):
+
+    @st.dialog("⚠️ Confirmer la suppression")
+    def confirm_delete():
+        st.markdown(
+            "Êtes-vous sûr de vouloir supprimer cette conversation ?  \n"
+            "**Cette action est irréversible.**"
+        )
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button("✅ Supprimer", use_container_width=True):
                 delete_conversation(st.session_state.conversation_to_delete)
                 st.session_state.conversations = get_conversations()
+
                 if st.session_state.current_conversation == st.session_state.conversation_to_delete:
                     create_new_conversation()
+
                 st.session_state.show_delete_popup = False
                 st.session_state.conversation_to_delete = None
                 st.rerun()
-        with cancel_col:
-            if st.button("❌ Annuler", key="cancel_delete", use_container_width=True):
+
+        with col2:
+            if st.button("❌ Annuler", use_container_width=True):
                 st.session_state.show_delete_popup = False
                 st.session_state.conversation_to_delete = None
                 st.rerun()
-    st.markdown('</div>', unsafe_allow_html=True)
+
+    confirm_delete()
+
+
 
 # ----------------------
 # Contenu Principal
